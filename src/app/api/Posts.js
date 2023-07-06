@@ -1,34 +1,33 @@
 import { useQuery, gql } from "@apollo/client";
-
+import Cards from "../components/Cards";
 const GET_POSTS = gql`
   query getAllPosts {
-    posts(first: 1) {
+    posts(first: 9) {
       nodes {
         date
         uri
-        title
+        status
+        excerpt
         featuredImage {
           node {
             sourceUrl
+            altText
           }
         }
-        status
       }
     }
   }
 `;
 
-export default function GraphQL() {
+export default function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS);
-  if(loading) {
-    console.log(loading);
-    return <p>loading...</p>
+  if (loading) {
+    return <p>Loading....</p>;
   }
   if (error) {
-    console.log(error);
-    return <p>Error: {error.message}</p>
+    return <code>{error.message}</code>;
   }
   const posts = data.posts.nodes;
-  console.log(posts);
-  return <div>GraphQL</div>;
+
+  return <Cards posts={posts} />;
 }

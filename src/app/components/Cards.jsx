@@ -7,32 +7,47 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { Grid } from "@mui/material";
+import Link from "next/link";
 
-export default function Cards() {
+export default function Cards({ posts }) {
+  // console.log(posts);
   return (
-    <Grid item>
-      <Card sx={{ maxWidth: 345 }}>
-        <Image
-          src={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
-          alt="test"
-          width={400}
-          height={200}
-          style={{ objectFit: "cover" }}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>
+    <Grid container spacing={2}>
+      {posts.map((items, index) => {
+        return (
+          <Grid item key={index}>
+            <Card sx={{ maxWidth: 345 }}>
+              <Image
+                src={items.featuredImage.node.sourceUrl}
+                alt={items.featuredImage.node.altText}
+                width={400}
+                height={200}
+                style={{ objectFit: "cover" }}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {items.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {items.excerpt}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Typography variant="h6">{items.date}</Typography>
+                <Link href={"posts" + items.uri}>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    sx={{ display: "block" }}
+                  >
+                    Learn More
+                  </Button>
+                </Link>
+              </CardActions>
+            </Card>
+          </Grid>
+        );
+      })}
     </Grid>
   );
 }

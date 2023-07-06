@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "mui.com",
       },
+      {
+        protocol: "https",
+        hostname: "dev-learning.funnelpageinc.com",
+      },
     ],
   },
 };
