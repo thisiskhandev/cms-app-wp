@@ -20,7 +20,7 @@ export default function Footer() {
             {
               quickList.map((item, ind) => {
               return(
-                <ListItem sx={{padding: 0, textTransform: "capitalize"}}>
+                <ListItem sx={{padding: 0, textTransform: "capitalize"}} key={ind}>
                 <Link href={item.link}><ListItemText primary={item.text}/></Link>
               </ListItem>
               );
@@ -33,7 +33,7 @@ export default function Footer() {
             {
               quickList.map((item, ind) => {
               return(
-                <ListItem sx={{padding: 0, textTransform: "capitalize"}}>
+                <ListItem sx={{padding: 0, textTransform: "capitalize"}} key={ind}>
                 <Link href={item.link}><ListItemText primary={item.text}/></Link>
               </ListItem>
               );
@@ -46,7 +46,7 @@ export default function Footer() {
             {
               quickList.map((item, ind) => {
               return(
-                <ListItem sx={{padding: 0, textTransform: "capitalize"}}>
+                <ListItem sx={{padding: 0, textTransform: "capitalize"}} key={ind}>
                 <Link href={item.link}><ListItemText primary={item.text}/></Link>
               </ListItem>
               );
@@ -59,7 +59,7 @@ export default function Footer() {
             {
               quickList.map((item, ind) => {
               return(
-                <ListItem sx={{padding: 0, textTransform: "capitalize"}}>
+                <ListItem sx={{padding: 0, textTransform: "capitalize"}} key={ind}>
                 <Link href={item.link}><ListItemText primary={item.text}/></Link>
               </ListItem>
               );
