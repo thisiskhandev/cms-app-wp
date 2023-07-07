@@ -1,5 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 import Cards from "../components/Cards";
+import LoadingCards from "../components/LoadingCards";
 const GET_POSTS = gql`
   query getAllPosts {
     posts(first: 9) {
@@ -22,7 +23,7 @@ const GET_POSTS = gql`
 export default function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS);
   if (loading) {
-    return <p>Loading....</p>;
+    return <LoadingCards />;
   }
   if (error) {
     return <code>{error.message}</code>;
