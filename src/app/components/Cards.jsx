@@ -9,8 +9,13 @@ import Image from "next/image";
 import { Grid } from "@mui/material";
 import Link from "next/link";
 
-export default function Cards({ posts, hasNextPage, handleLoadMore }) {
-  console.log(posts);
+export default function Cards({
+  posts,
+  hasNextPage,
+  handleLoadMore,
+  isLoadingMore,
+}) {
+  // console.log(posts);
   return (
     <Grid container spacing={2}>
       {posts.map((items, index) => {
@@ -54,8 +59,9 @@ export default function Cards({ posts, hasNextPage, handleLoadMore }) {
           onClick={handleLoadMore}
           variant="outline"
           sx={{ textAlign: "center", margin: "auto", marginTop: 5 }}
+          disabled={isLoadingMore}
         >
-          Load More
+          {isLoadingMore ? "loading..." : "Load More"}
         </Button>
       )}
     </Grid>

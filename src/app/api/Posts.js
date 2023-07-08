@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Cards from "../components/Cards";
 import LoadingCards from "../components/LoadingCards";
@@ -27,6 +28,7 @@ const GET_POSTS = gql`
 
 
 export default function Posts() {
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const { loading, error, data, fetchMore } = useQuery(GET_POSTS, {
     variables: { first: 9 },
   });
@@ -38,11 +40,15 @@ export default function Posts() {
       return; // No more posts to fetch, return early
     }
 
+    setIsLoadingMore(true);
+
     fetchMore({
       variables: { first: 9, after: endCursor },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         const newPosts = fetchMoreResult.posts.nodes;
         const pageInfo = fetchMoreResult.posts.pageInfo;
+
+        setIsLoadingMore(false);
 
         return {
           posts: {
@@ -55,7 +61,7 @@ export default function Posts() {
     });
   };
 
-  if (loading) {
+  if (loading && !isLoadingMore) {
     return <LoadingCards />;
   }
   if (error) {
@@ -66,7 +72,7 @@ export default function Posts() {
 
   return (
     <>
-      <Cards posts={posts} hasNextPage={hasNextPage} handleLoadMore={handleLoadMore}/>
+      <Cards posts={posts} hasNextPage={hasNextPage} handleLoadMore={handleLoadMore} isLoadingMore={isLoadingMore}/>
       {/* {hasNextPage && <button onClick={handleLoadMore}>Load More</button>} */}
     </>
   );
