@@ -28,9 +28,11 @@ export default function Cards({ posts }) {
                 <Typography gutterBottom variant="h5" component="div">
                   {items.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {items.excerpt}
-                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  dangerouslySetInnerHTML={{ __html: items.excerpt }}
+                />
               </CardContent>
               <CardActions>
                 <Link href={"posts" + items.uri}>
