@@ -10,13 +10,13 @@ import { Grid } from "@mui/material";
 import Link from "next/link";
 
 export default function Cards({ posts }) {
-  // console.log(posts);
+  console.log(posts);
   return (
     <Grid container spacing={2}>
       {posts.map((items, index) => {
         return (
           <Grid item key={index}>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345, height: "100%" }}>
               <Image
                 src={items.featuredImage.node.sourceUrl}
                 alt={items.featuredImage.node.altText}
@@ -33,7 +33,6 @@ export default function Cards({ posts }) {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Typography variant="h6">{items.date}</Typography>
                 <Link href={"posts" + items.uri}>
                   <Button
                     size="small"

@@ -8,6 +8,7 @@ const GET_POSTS = gql`
         date
         uri
         status
+        title
         excerpt
         featuredImage {
           node {

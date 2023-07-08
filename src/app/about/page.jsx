@@ -9,7 +9,7 @@ export default function About() {
         <section>
           <h1 className="title">About</h1>
           <Button variant="outlined">
-            <Link href={"/"}>Homepage</Link>
+            <Link href="/">Homepage</Link>
           </Button>
         </section>
       </Container>
