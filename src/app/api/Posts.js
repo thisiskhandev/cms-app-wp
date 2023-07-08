@@ -2,8 +2,8 @@ import { useQuery, gql } from "@apollo/client";
 import Cards from "../components/Cards";
 import LoadingCards from "../components/LoadingCards";
 const GET_POSTS = gql`
-  query getAllPosts {
-    posts(first: 9) {
+  query GetAllPosts($first: Int!, $after: String) {
+    posts(first: $first, after: $after) {
       nodes {
         date
         uri
@@ -17,12 +17,44 @@ const GET_POSTS = gql`
           }
         }
       }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
     }
   }
 `;
 
+
 export default function Posts() {
-  const { loading, error, data } = useQuery(GET_POSTS);
+  const { loading, error, data, fetchMore } = useQuery(GET_POSTS, {
+    variables: { first: 9 },
+  });
+
+  const handleLoadMore = () => {
+    const { endCursor, hasNextPage } = data.posts.pageInfo;
+
+    if (!hasNextPage) {
+      return; // No more posts to fetch, return early
+    }
+
+    fetchMore({
+      variables: { first: 9, after: endCursor },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const newPosts = fetchMoreResult.posts.nodes;
+        const pageInfo = fetchMoreResult.posts.pageInfo;
+
+        return {
+          posts: {
+            __typename: previousResult.posts.__typename,
+            pageInfo,
+            nodes: [...previousResult.posts.nodes, ...newPosts],
+          },
+        };
+      },
+    });
+  };
+
   if (loading) {
     return <LoadingCards />;
   }
@@ -30,6 +62,13 @@ export default function Posts() {
     return <code>{error.message}</code>;
   }
   const posts = data.posts.nodes;
+  const hasNextPage = data.posts.pageInfo.hasNextPage;
 
-  return <Cards posts={posts} />;
+  return (
+    <>
+      <Cards posts={posts} hasNextPage={hasNextPage} handleLoadMore={handleLoadMore}/>
+      {/* {hasNextPage && <button onClick={handleLoadMore}>Load More</button>} */}
+    </>
+  );
 }
+

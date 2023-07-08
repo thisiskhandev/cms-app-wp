@@ -9,7 +9,7 @@ import Image from "next/image";
 import { Grid } from "@mui/material";
 import Link from "next/link";
 
-export default function Cards({ posts }) {
+export default function Cards({ posts, hasNextPage, handleLoadMore }) {
   console.log(posts);
   return (
     <Grid container spacing={2}>
@@ -49,6 +49,15 @@ export default function Cards({ posts }) {
           </Grid>
         );
       })}
+      {hasNextPage && (
+        <Button
+          onClick={handleLoadMore}
+          variant="outline"
+          sx={{ textAlign: "center", margin: "auto", marginTop: 5 }}
+        >
+          Load More
+        </Button>
+      )}
     </Grid>
   );
 }
