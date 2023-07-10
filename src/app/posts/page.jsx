@@ -1,5 +1,12 @@
+"use client";
+import Posts from "../api/Posts";
+
 export default function page() {
   return (
-    <div>Posts Page</div>
+  <main>
+    <section>
+        <Posts/>
+    </section>
+  </main>    
   )
 }

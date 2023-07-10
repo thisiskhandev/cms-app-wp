@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer style={...style}>
+    <footer style={{...style}}>
       <Container style={{paddingTop: 40, paddingBottom: 40, marginTop: 90}}>
         <Grid container spacing={4}>
           <Grid item xs={4}>

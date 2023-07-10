@@ -28,7 +28,7 @@ export default function LoadingCards() {
 
   const repetition = 6;
   const renderedContent = Array.from({ length: repetition }, (_, index) => (
-    <section key={index} style={...styleCard}>{content}</section>
+    <section key={index} style={{...styleCard}}>{content}</section>
   ));
 
   return <main style={{display: "grid", gridTemplateColumns: "auto auto auto", gap: 10}}>{renderedContent}</main>;

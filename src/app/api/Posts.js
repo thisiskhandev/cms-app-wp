@@ -30,7 +30,7 @@ const GET_POSTS = gql`
 export default function Posts() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const { loading, error, data, fetchMore } = useQuery(GET_POSTS, {
-    variables: { first: 9 },
+    variables: { first: 6 },
   });
 
   const handleLoadMore = () => {
@@ -43,7 +43,7 @@ export default function Posts() {
     setIsLoadingMore(true);
 
     fetchMore({
-      variables: { first: 9, after: endCursor },
+      variables: { first: 6, after: endCursor },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         const newPosts = fetchMoreResult.posts.nodes;
         const pageInfo = fetchMoreResult.posts.pageInfo;
