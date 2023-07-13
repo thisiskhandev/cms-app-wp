@@ -1,30 +1,8 @@
 import { useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Cards from "../components/Cards";
 import LoadingCards from "../components/LoadingCards";
-const GET_POSTS = gql`
-  query GetAllPosts($first: Int!, $after: String) {
-    posts(first: $first, after: $after) {
-      nodes {
-        date
-        uri
-        status
-        title
-        excerpt
-        featuredImage {
-          node {
-            sourceUrl
-            altText
-          }
-        }
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-    }
-  }
-`;
+import { GET_POSTS } from "./api";
 
 
 export default function Posts() {

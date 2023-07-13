@@ -1,16 +1,16 @@
 "use client";
 
 import styles from "./page.module.css";
-import { Container, Grid } from "@mui/material";
+import { Container } from "@mui/material";
 import Footer from "./components/Footer";
 import Posts from "./api/Posts";
 import Header from "./components/Header";
 import { ApolloProvider } from "@apollo/client";
-import Client from "./api/client";
+import apollo from "./api/apollo";
 
 export default function Home() {
   return (
-    <ApolloProvider client={Client}>
+    <ApolloProvider client={apollo}>
       <main>
         <section className={styles.bgcover}></section>
         <Container>

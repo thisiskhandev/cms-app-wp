@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default function DynamicPostsRoute({ params }) {
-  console.log(params.id);
+  // console.log(params.id);
   return (
     <div>
       <h1>
