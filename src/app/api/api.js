@@ -24,3 +24,45 @@ export const GET_POSTS = gql`
     }
   }
 `;
+
+export const GET_SINGLE_POST_QUERY = gql`
+  query GetSinglePost {
+    posts {
+      nodes {
+        postId
+        date
+        slug
+        status
+        title
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        content
+      }
+    }
+  }
+`;
+
+// export const GET_SINGLE_POST_QUERY = gql`
+//   query GetSinglePost($id: Int!) {
+//     posts(where: { id: $id }) {
+//       nodes {
+//         postId
+//         date
+//         slug
+//         status
+//         title
+//         featuredImage {
+//           node {
+//             sourceUrl
+//             altText
+//           }
+//         }
+//         content
+//       }
+//     }
+//   }
+// `;

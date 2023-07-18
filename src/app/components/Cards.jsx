@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { Grid } from "@mui/material";
 import Link from "next/link";
+import dummyImage from "../../../public/images/dummy-img.png";
 
 export default function Cards({
   posts,
@@ -22,13 +23,24 @@ export default function Cards({
         return (
           <Grid item key={index}>
             <Card sx={{ maxWidth: 345, height: "100%" }}>
-              <Image
-                src={items.featuredImage.node.sourceUrl}
-                alt={items.featuredImage.node.altText}
-                width={400}
-                height={200}
-                style={{ objectFit: "cover" }}
-              />
+              {items.featuredImage ? (
+                <Image
+                  src={items.featuredImage.node.sourceUrl}
+                  alt={items.featuredImage.node.altText}
+                  width={400}
+                  height={200}
+                  style={{ objectFit: "cover" }}
+                />
+              ) : (
+                <Image
+                  src={dummyImage}
+                  alt={"Dummy Image" + index}
+                  width={400}
+                  height={200}
+                  style={{ objectFit: "cover" }}
+                />
+              )}
+
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {items.title}

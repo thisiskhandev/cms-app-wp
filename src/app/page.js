@@ -6,16 +6,17 @@ import Footer from "./components/Footer";
 import Posts from "./api/Posts";
 import Header from "./components/Header";
 import { ApolloProvider } from "@apollo/client";
-import apollo from "./api/apollo";
+import { client } from "./api/client";
+import Heading from "./components/Heading";
 
 export default function Home() {
   return (
-    <ApolloProvider client={apollo}>
+    <ApolloProvider client={client}>
       <main>
         <section className={styles.bgcover}></section>
         <Container>
           <Header />
-          <h1 className="title">Blogs - Homepage</h1>
+          <Heading title="Homepage" />
           <Posts />
         </Container>
         <Footer />

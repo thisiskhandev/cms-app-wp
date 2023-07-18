@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "dev-learning.funnelpageinc.com",
+        hostname: "dev-testing.funnelpageinc.com",
       },
     ],
   },
