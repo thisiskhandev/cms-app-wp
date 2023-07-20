@@ -1,6 +1,7 @@
-import { ApolloProvider, gql, useQuery } from "@apollo/client";
+"use client";
+
+import { gql, useQuery } from "@apollo/client";
 import LoadingCards from "@/app/components/LoadingCards";
-import { client } from "@/app/api/client";
 
 export async function generateMetadata({ params }) {
   let pageTitle = params.id;
@@ -12,7 +13,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const GET_SINGLE_POST_QUERY = gql`
+export const GET_SINGLE_POST_QUERY = gql`
   query GetSinglePost {
     posts {
       nodes {
@@ -33,7 +34,7 @@ const GET_SINGLE_POST_QUERY = gql`
   }
 `;
 
-export default function DynamicPostsRoute({ params }) {
+export default function DynamicPostsRoute() {
   const { loading, error, data } = useQuery(GET_SINGLE_POST_QUERY);
 
   if (loading) {
@@ -45,15 +46,10 @@ export default function DynamicPostsRoute({ params }) {
   const post = data.posts.nodes;
   console.log(post);
   return (
-    <ApolloProvider client={client}>
-      <div>
-        <h1>
-          Page Title is{" "}
-          <code>
-            <mark>{params.id}</mark>
-          </code>
-        </h1>
-      </div>
-    </ApolloProvider>
+    <div>
+      <h1>
+        Page Title is <code>{/* <mark>{params.id}</mark> */}</code>
+      </h1>
+    </div>
   );
 }

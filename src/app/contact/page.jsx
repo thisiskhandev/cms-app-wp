@@ -3,7 +3,7 @@
 import { Button, Container } from "@mui/material";
 import Link from "next/link";
 
-export default function About() {
+export default function Contact() {
   return (
     <>
       <Container>
