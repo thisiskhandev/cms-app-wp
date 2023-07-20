@@ -4,7 +4,6 @@ import Cards from "../components/Cards";
 import LoadingCards from "../components/LoadingCards";
 import { GET_POSTS } from "./api";
 
-
 export default function Posts() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const { loading, error, data, fetchMore } = useQuery(GET_POSTS, {
@@ -47,12 +46,16 @@ export default function Posts() {
   }
   const posts = data.posts.nodes;
   const hasNextPage = data.posts.pageInfo.hasNextPage;
-
+  // console.log(posts);
   return (
     <>
-      <Cards posts={posts} hasNextPage={hasNextPage} handleLoadMore={handleLoadMore} isLoadingMore={isLoadingMore}/>
+      <Cards
+        posts={posts}
+        hasNextPage={hasNextPage}
+        handleLoadMore={handleLoadMore}
+        isLoadingMore={isLoadingMore}
+      />
       {/* {hasNextPage && <button onClick={handleLoadMore}>Load More</button>} */}
     </>
   );
 }
-

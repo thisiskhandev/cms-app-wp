@@ -21,7 +21,7 @@ export default function Cards({
     <Grid container spacing={2}>
       {posts.map((items, index) => {
         return (
-          <Grid item key={index}>
+          <Grid item key={items.postId}>
             <Card sx={{ maxWidth: 345, height: "100%" }}>
               {items.featuredImage ? (
                 <Image
@@ -40,8 +40,10 @@ export default function Cards({
                   style={{ objectFit: "cover" }}
                 />
               )}
-
               <CardContent>
+                <Typography as="small">
+                  <strong>Date</strong>: {items.date}
+                </Typography>
                 <Typography gutterBottom variant="h5" component="div">
                   {items.title}
                 </Typography>
@@ -52,7 +54,7 @@ export default function Cards({
                 />
               </CardContent>
               <CardActions>
-                <Link href={"posts" + items.uri}>
+                <Link href={"posts" + items.uri + "?id=" + items.postId}>
                   <Button
                     size="small"
                     variant="contained"
