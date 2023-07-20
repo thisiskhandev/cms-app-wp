@@ -1,7 +1,7 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import styles from "./component.module.css";
-export default function LoadingCards() {
+export default function LoadingSinglePost() {
   const content = (
     <>
       <div>
@@ -26,7 +26,7 @@ export default function LoadingCards() {
     </>
   );
 
-  const repetition = 6;
+  const repetition = 1;
   const renderedContent = Array.from({ length: repetition }, (_, index) => (
     <section key={index} className={styles.style_cards}>
       {content}
@@ -35,11 +35,6 @@ export default function LoadingCards() {
 
   return (
     <main
-      style={{
-        display: "grid",
-        gridTemplateColumns: "auto auto auto",
-        gap: 10,
-      }}
       className={styles.main_card}
     >
       {renderedContent}

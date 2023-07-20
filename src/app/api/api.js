@@ -25,30 +25,9 @@ export const GET_POSTS = gql`
   }
 `;
 
-export const GET_SINGLE_POST_QUERY = gql`
-  query GetSinglePost {
-    posts(where: { id: 1 }) {
-      nodes {
-        postId
-        date
-        slug
-        status
-        title
-        featuredImage {
-          node {
-            sourceUrl
-            altText
-          }
-        }
-        content
-      }
-    }
-  }
-`;
-
 // export const GET_SINGLE_POST_QUERY = gql`
-//   query GetSinglePost($id: Int!) {
-//     posts(where: { id: $id }) {
+//   query GetSinglePost {
+//     posts(where: { id: 1 }) {
 //       nodes {
 //         postId
 //         date
@@ -66,3 +45,36 @@ export const GET_SINGLE_POST_QUERY = gql`
 //     }
 //   }
 // `;
+
+export const GET_SINGLE_POST_QUERY = gql`
+  query GetSinglePost($id: Int!) {
+    posts(where: { id: $id }) {
+      nodes {
+        postId
+        date
+        slug
+        status
+        title
+        content
+        featuredImage {
+          node {
+            sourceUrl
+            title
+            altText
+          }
+        }
+        author {
+          node {
+            id
+            name
+            firstName
+            lastName
+            avatar {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`;

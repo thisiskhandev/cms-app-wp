@@ -9,7 +9,7 @@ export default function Posts() {
   const { loading, error, data, fetchMore } = useQuery(GET_POSTS, {
     variables: { first: 6 },
   });
-
+  
   const handleLoadMore = () => {
     const { endCursor, hasNextPage } = data.posts.pageInfo;
 

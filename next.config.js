@@ -10,6 +10,9 @@ const nextConfig = {
         protocol: "https",
         hostname: "dev-testing.funnelpageinc.com",
       },
+      {
+        hostname: "secure.gravatar.com",
+      },
     ],
   },
 };
