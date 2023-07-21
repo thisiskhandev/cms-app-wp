@@ -25,6 +25,12 @@ export default function DynamicPostsRoute({ params }) {
 
   const { loading, error, data } = useQuery(GET_SINGLE_POST_QUERY, {
     variables: { id: postID },
+    next: { revalidate: 60 },
+    // pollInterval: 120,
+    // notifyOnNetworkStatusChange: true,
+    // revalidateOnMount: true,
+    // revalidateOnFocus: true,
+    // revalidateOnReconnect: true,
   });
 
   if (loading) {
